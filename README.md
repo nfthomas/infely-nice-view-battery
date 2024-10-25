@@ -8,6 +8,12 @@ I've spent time developing practical customization for the nice!view displays, f
 
 Add this shield to your keymap repo (see usage below) and run the GitHub action to build your firmware.
 
+## Customization
+
+My preference is to comment out the `display-name` for your base layer so it highlights changes only, keeping layout clean and visualy appealing. But the final decision on you.
+
+![Layer](https://github.com/infely/nice-view-battery/blob/main/.github/assets/layer.jpg?raw=true)
+
 ## Usage
 
 To use this shield, first add it to your `config/west.yml` by adding a new entry to remotes and projects:
