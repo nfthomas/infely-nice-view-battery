@@ -18,10 +18,10 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[], const int size) {
 }
 
 void draw_background(lv_obj_t *canvas, const int size) {
-    lv_draw_rect_dsc_t rect_black_dsc;
-    init_rect_dsc(&rect_black_dsc, LVGL_BACKGROUND);
+    lv_draw_rect_dsc_t rect_dsc;
+    init_rect_dsc(&rect_dsc, LVGL_BACKGROUND);
 
-    lv_canvas_draw_rect(canvas, 0, 0, size, size, &rect_black_dsc);
+    lv_canvas_draw_rect(canvas, 0, 0, size, size, &rect_dsc);
 }
 
 void init_label_dsc(lv_draw_label_dsc_t *label_dsc, lv_color_t color, const lv_font_t *font,

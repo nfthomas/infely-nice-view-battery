@@ -23,11 +23,11 @@ static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
 static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_state *state) {
     lv_obj_t *canvas = lv_obj_get_child(widget, 0);
-    draw_background(canvas, 22);
+    draw_background(canvas, TOP_SIZE);
 
     draw_output_status(canvas, state);
 
-    rotate_canvas(canvas, cbuf, 22);
+    rotate_canvas(canvas, cbuf, TOP_SIZE);
 }
 
 static void draw_middle(lv_obj_t *widget, lv_color_t cbuf[], const struct status_state *state) {
@@ -38,7 +38,6 @@ static void draw_middle(lv_obj_t *widget, lv_color_t cbuf[], const struct status
 
     rotate_canvas(canvas, cbuf, CANVAS_SIZE);
 }
-
 
 // Battery status
 
@@ -107,11 +106,17 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
 
     lv_obj_t *top = lv_canvas_create(widget->obj);
     lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
-    lv_canvas_set_buffer(top, widget->cbuf, 22, 22, LV_IMG_CF_TRUE_COLOR);
+    lv_canvas_set_buffer(top, widget->cbuf, TOP_SIZE, TOP_SIZE, LV_IMG_CF_TRUE_COLOR);
 
     lv_obj_t *middle = lv_canvas_create(widget->obj);
     lv_obj_align(middle, LV_ALIGN_TOP_LEFT, 28, 0);
     lv_canvas_set_buffer(middle, widget->cbuf2, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
+
+#if IS_ENABLED(CONFIG_NICE_VIEW_WIDGET_INVERTED)
+    lv_obj_t *bottom = lv_canvas_create(widget->obj);
+    lv_obj_align(bottom, LV_ALIGN_TOP_LEFT, -40, 0);
+    lv_canvas_set_buffer(bottom, widget->cbuf3, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
+#endif
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();

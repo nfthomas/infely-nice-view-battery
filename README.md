@@ -51,3 +51,7 @@ include:
 ## Configuration
 
 Modify the behavior of this shield by adjusting these options in your personal configuration files. For a more detailed explanation, refer to [Configuration in the ZMK documentation](https://zmk.dev/docs/config).
+
+| Option                             | Type | Description                                      | Default |
+| ---------------------------------- | ---- | ------------------------------------------------ | ------- |
+| `CONFIG_NICE_VIEW_WIDGET_INVERTED` | bool | To enable color inversion, set the option to `y` | n       |
