@@ -29,14 +29,13 @@ void draw_battery_status(lv_obj_t *canvas, const struct status_state *state) {
     const int y = 9;
     const int w = 62;
 
-    lv_canvas_draw_text(canvas, 0 - 1, y - 1, w, &outline_dsc, text);
-    lv_canvas_draw_text(canvas, 0, y - 1, w, &outline_dsc, text);
-    lv_canvas_draw_text(canvas, 0 + 1, y - 1, w, &outline_dsc, text);
-    lv_canvas_draw_text(canvas, 0 - 1, y, w, &outline_dsc, text);
-    lv_canvas_draw_text(canvas, 0 + 1, y, w, &outline_dsc, text);
-    lv_canvas_draw_text(canvas, 0 - 1, y + 1, w, &outline_dsc, text);
-    lv_canvas_draw_text(canvas, 0, y + 1, w, &outline_dsc, text);
-    lv_canvas_draw_text(canvas, 0 + 1, y + 1, w, &outline_dsc, text);
+    for (int dx = -1; dx <= 1; dx++) {
+        for (int dy = -1; dy <= 1; dy++) {
+            if (dx != 0 || dy != 0) {
+                lv_canvas_draw_text(canvas, dx, y + dy, w, &outline_dsc, text);
+            }
+        }
+    }
 
     lv_canvas_draw_text(canvas, 0, y, w, &label_dsc, text);
 
