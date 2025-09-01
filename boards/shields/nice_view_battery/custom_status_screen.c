@@ -1,4 +1,8 @@
+#if defined(ZMK_SPLIT_ROLE_PERIPHERAL)
+#include "screens/peripheral.h"
+#else
 #include "screens/central.h"
+#endif
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
