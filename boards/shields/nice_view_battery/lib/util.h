@@ -14,12 +14,13 @@
 struct status_state {
     uint8_t battery;
     bool charging;
+#if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     struct zmk_endpoint_instance selected_endpoint;
     int active_profile_index;
     bool active_profile_connected;
     bool active_profile_bonded;
     const char *layer_label;
-#if IS_ENABLED(CONFIG_ZMK_SPLIT) && IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_PERIPHERAL)
+#else
     bool connected;
 #endif
 };
