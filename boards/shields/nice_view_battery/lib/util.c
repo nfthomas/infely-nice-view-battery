@@ -13,9 +13,28 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[], const int size) {
     img.header.h = size;
 
     lv_canvas_fill_bg(canvas, LVGL_BACKGROUND, LV_OPA_COVER);
-    // TODO: or use LV_SCALE_NONE?
-    lv_canvas_transform(canvas, &img, 900, LV_ZOOM_NONE, -1, 0, size / 2,
-                        size / 2, false);
+
+    lv_layer_t layer;
+    lv_canvas_init_layer(canvas, &layer);
+
+    lv_draw_img_dsc_t img_dsc;
+    lv_draw_img_dsc_init(&img_dsc);
+
+    img_dsc.angle = 900;                /* 90° */
+    img_dsc.zoom  = LV_ZOOM_NONE;
+    img_dsc.pivot.x = size / 2;
+    img_dsc.pivot.y = size / 2;
+
+    lv_area_t coords = {
+        .x1 = 0,
+        .y1 = 0,
+        .x2 = size - 1,
+        .y2 = size - 1,
+    };
+
+    lv_draw_img(&layer, &img_dsc, &coords, &img);
+
+    lv_canvas_finish_layer(canvas, &layer);
 }
 
 void draw_background(lv_obj_t *canvas, const int size) {
