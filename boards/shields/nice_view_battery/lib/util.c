@@ -18,7 +18,7 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[], const int size) {
     lv_canvas_init_layer(canvas, &layer);
 
     lv_draw_image_dsc_t img_dsc;
-    lv_draw_img_dsc_init(&img_dsc);
+    lv_draw_image_dsc_init(&img_dsc);
 
     img_dsc.angle = 900;                /* 90° */
     img_dsc.zoom  = LV_ZOOM_NONE;
