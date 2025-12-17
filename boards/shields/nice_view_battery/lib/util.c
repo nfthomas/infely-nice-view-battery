@@ -13,7 +13,8 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[], const int size) {
     img.header.h = size;
 
     lv_canvas_fill_bg(canvas, LVGL_BACKGROUND, LV_OPA_COVER);
-    lv_canvas_transform(canvas, &img, 900, LV_IMG_ZOOM_NONE, -1, 0, size / 2,
+    // TODO: or use LV_SCALE_NONE?
+    lv_canvas_transform(canvas, &img, 900, LV_ZOOM_NONE, -1, 0, size / 2,
                         size / 2, false);
 }
 
