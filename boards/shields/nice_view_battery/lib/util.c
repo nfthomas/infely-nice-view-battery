@@ -22,7 +22,19 @@ void draw_background(lv_obj_t *canvas, const int size) {
     lv_draw_rect_dsc_t rect_dsc;
     init_rect_dsc(&rect_dsc, LVGL_BACKGROUND);
 
-    lv_canvas_draw_rect(canvas, 0, 0, size, size, &rect_dsc);
+    lv_layer_t layer;
+    lv_canvas_init_layer(canvas, &layer);
+
+    lv_area_t coords = {
+        .x1 = 0,
+        .y1 = 0,
+        .x2 = size - 1,
+        .y2 = size - 1,
+    };
+
+    lv_draw_rect(&layer, &rect_dsc, &coords);
+
+    lv_canvas_finish_layer(canvas, &layer);
 }
 
 void init_label_dsc(lv_draw_label_dsc_t *label_dsc, lv_color_t color, const lv_font_t *font,
@@ -49,4 +61,3 @@ void to_uppercase(char *str) {
         str[i] = toupper(str[i]);
     }
 }
-
