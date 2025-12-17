@@ -6,7 +6,7 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[], const int size) {
     static lv_color_t cbuf_tmp[CANVAS_SIZE * CANVAS_SIZE];
     memcpy(cbuf_tmp, cbuf, sizeof(cbuf_tmp));
 
-    lv_img_dsc_t img;
+    lv_image_dsc_t img;
     img.data = (void *)cbuf_tmp;
     img.header.cf = LV_COLOR_FORMAT_NATIVE;
     img.header.w = size;

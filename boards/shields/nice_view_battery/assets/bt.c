@@ -28,7 +28,7 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_BT uint8_
   0xff, 0xc0, 
 };
 
-const lv_img_dsc_t bt = {
+const lv_image_dsc_t bt = {
   .header.cf = LV_COLOR_FORMAT_I1,
   .header.always_zero = 0,
   .header.reserved = 0,
