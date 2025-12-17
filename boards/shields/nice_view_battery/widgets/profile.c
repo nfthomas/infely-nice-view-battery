@@ -8,7 +8,7 @@ LV_IMG_DECLARE(profile);
 LV_IMG_DECLARE(profile_active);
 
 void draw_profile_status(lv_obj_t *canvas, const struct status_state *state) {
-    lv_draw_img_dsc_t img_dsc;
+    lv_draw_image_dsc_t img_dsc;
     lv_draw_img_dsc_init(&img_dsc);
 
     for (int i = 0; i < 5; i++) {
