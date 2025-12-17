@@ -5,7 +5,7 @@
 #define OFFSET_X 0
 #define OFFSET_Y 0
 
-LV_IMG_DECLARE(layer);
+LV_IMG_DECLARE(layer_icon);
 
 void draw_layer_status(lv_obj_t *canvas, const struct status_state *state) {
     if (state->layer_label == NULL || state->layer_label[0] == '\0') {
@@ -31,7 +31,7 @@ void draw_layer_status(lv_obj_t *canvas, const struct status_state *state) {
         .y2 = OFFSET_Y + layer.header.h - 1,
     };
 
-    img_dsc.src = &layer;
+    img_dsc.src = &layer_icon;
     lv_draw_layer(&layer_img, &img_dsc, &coords_img);
 
     canvas_end(canvas, &layer_img);
