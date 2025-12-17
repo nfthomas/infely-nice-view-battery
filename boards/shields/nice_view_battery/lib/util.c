@@ -20,10 +20,11 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[], const int size) {
     lv_draw_image_dsc_t img_dsc;
     lv_draw_image_dsc_init(&img_dsc);
 
-    img_dsc.transform.angle = 900;                /* 90° */
-    img_dsc.transform.zoom  = LV_ZOOM_NONE;
-    img_dsc.transform.pivot.x = size / 2;
-    img_dsc.transform.pivot.y = size / 2;
+    img_dsc.rotation = 900;                /* 90° in 0.1° units */
+    img_dsc.scale_x = 256;                 /* 1.0x */
+    img_dsc.scale_y = 256;
+    img_dsc.pivot.x = size / 2;
+    img_dsc.pivot.y = size / 2;
 
     lv_area_t coords = {
         .x1 = 0,
@@ -32,7 +33,8 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[], const int size) {
         .y2 = size - 1,
     };
 
-    lv_draw_img(&layer, &img_dsc, &coords, &img);
+    img_dsc.src = &img;
+    lv_draw_image(&layer, &img_dsc, &coords);
 
     lv_canvas_finish_layer(canvas, &layer);
 }
