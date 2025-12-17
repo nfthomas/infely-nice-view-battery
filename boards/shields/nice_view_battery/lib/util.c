@@ -20,10 +20,10 @@ void rotate_canvas(lv_obj_t *canvas, lv_color_t cbuf[], const int size) {
     lv_draw_image_dsc_t img_dsc;
     lv_draw_image_dsc_init(&img_dsc);
 
-    img_dsc.angle = 900;                /* 90° */
-    img_dsc.zoom  = LV_ZOOM_NONE;
-    img_dsc.pivot.x = size / 2;
-    img_dsc.pivot.y = size / 2;
+    img_dsc.transform.angle = 900;                /* 90° */
+    img_dsc.transform.zoom  = LV_ZOOM_NONE;
+    img_dsc.transform.pivot.x = size / 2;
+    img_dsc.transform.pivot.y = size / 2;
 
     lv_area_t coords = {
         .x1 = 0,
