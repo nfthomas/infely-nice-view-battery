@@ -12,7 +12,7 @@ void draw_profile_status(lv_obj_t *canvas, const struct status_state *state) {
     lv_draw_image_dsc_init(&img_dsc);
 
     for (int i = 0; i < 5; i++) {
-        lv_img_dsc_t *img_ptr = i == state->active_profile_index ? &profile_active : &profile;
+        const lv_img_dsc_t *img_ptr = i == state->active_profile_index ? &profile_active : &profile;
         
         lv_layer_t layer;
         canvas_begin(canvas, &layer);
@@ -24,7 +24,8 @@ void draw_profile_status(lv_obj_t *canvas, const struct status_state *state) {
             .y2 = OFFSET_Y + img_ptr->header.h - 1,
         };
 
-        lv_draw_image(&layer, &img_dsc, &coords, img_ptr);
+        img_dsc.src = (const void *)img_ptr;
+        lv_draw_image(&layer, &img_dsc, &coords);
 
         canvas_end(canvas, &layer);
     }

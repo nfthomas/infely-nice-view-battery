@@ -31,7 +31,8 @@ void draw_layer_status(lv_obj_t *canvas, const struct status_state *state) {
         .y2 = OFFSET_Y + layer.header.h - 1,
     };
 
-    lv_draw_image(&layer_img, &img_dsc, &coords_img, &layer);
+    img_dsc.src = &layer;
+    lv_draw_layer(&layer_img, &img_dsc, &coords_img);
 
     canvas_end(canvas, &layer_img);
 

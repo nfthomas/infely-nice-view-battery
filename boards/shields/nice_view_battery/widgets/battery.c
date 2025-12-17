@@ -29,7 +29,8 @@ void draw_battery_status(lv_obj_t *canvas, const struct status_state *state) {
         .y2 = 0 + battery.header.h - 1,
     };
 
-    lv_draw_image(&layer, &img_dsc, &coords, &battery);
+    img_dsc.src = &battery;
+    lv_draw_image(&layer, &img_dsc, &coords);
 
     canvas_end(canvas, &layer);
 
@@ -57,7 +58,8 @@ void draw_battery_status(lv_obj_t *canvas, const struct status_state *state) {
         .y2 = 2 + battery_mask.header.h - 1,
     };
 
-    lv_draw_image(&layer_mask, &img_dsc, &coords_mask, &battery_mask);
+    img_dsc.src = &battery_mask;
+    lv_draw_image(&layer_mask, &img_dsc, &coords_mask);
 
     canvas_end(canvas, &layer_mask);
 
@@ -112,7 +114,8 @@ void draw_battery_status(lv_obj_t *canvas, const struct status_state *state) {
             .y2 = OFFSET_Y + bolt.header.h - 1,
         };
 
-        lv_draw_image(&layer_bolt, &img_dsc, &coords_bolt, &bolt);
+        img_dsc.src = &bolt;
+        lv_draw_image(&layer_bolt, &img_dsc, &coords_bolt);
 
         canvas_end(canvas, &layer_bolt);
     }

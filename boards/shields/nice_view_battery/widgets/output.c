@@ -30,7 +30,8 @@ static void draw_usb_connected(lv_obj_t *canvas) {
         .y2 = OFFSET_Y + usb.header.h - 1,
     };
 
-    lv_draw_image(&layer, &img_dsc, &coords, &usb);
+    img_dsc.src = &usb;
+    lv_draw_image(&layer, &img_dsc, &coords);
 
     canvas_end(canvas, &layer);
 }
@@ -49,7 +50,8 @@ static void draw_ble_unbonded(lv_obj_t *canvas) {
         .y2 = OFFSET_Y + unbound.header.h - 1,
     };
 
-    lv_draw_image(&layer, &img_dsc, &coords, &unbound);
+    img_dsc.src = &unbound;
+    lv_draw_image(&layer, &img_dsc, &coords);
 
     canvas_end(canvas, &layer);
 }
@@ -59,7 +61,7 @@ static void draw_ble_disconnected(lv_obj_t *canvas) {
     lv_draw_image_dsc_t img_dsc;
     lv_draw_image_dsc_init(&img_dsc);
 
-    lv_img_dsc_t *img_ptr =
+    const lv_img_dsc_t *img_ptr =
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
                        &bt_disconnected;
 #else
@@ -76,7 +78,8 @@ static void draw_ble_disconnected(lv_obj_t *canvas) {
         .y2 = OFFSET_Y + img_ptr->header.h - 1,
     };
 
-    lv_draw_image(&layer, &img_dsc, &coords, img_ptr);
+    img_dsc.src = (const void *)img_ptr;
+    lv_draw_image(&layer, &img_dsc, &coords);
 
     canvas_end(canvas, &layer);
 }
@@ -85,7 +88,7 @@ static void draw_ble_connected(lv_obj_t *canvas) {
     lv_draw_image_dsc_t img_dsc;
     lv_draw_image_dsc_init(&img_dsc);
 
-    lv_img_dsc_t *img_ptr =
+    const lv_img_dsc_t *img_ptr =
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
                        &bt;
 #else
@@ -102,7 +105,8 @@ static void draw_ble_connected(lv_obj_t *canvas) {
         .y2 = OFFSET_Y + img_ptr->header.h - 1,
     };
 
-    lv_draw_image(&layer, &img_dsc, &coords, img_ptr);
+    img_dsc.src = (const void *)img_ptr;
+    lv_draw_image(&layer, &img_dsc, &coords);
 
     canvas_end(canvas, &layer);
 }
