@@ -27,8 +27,8 @@ void draw_layer_status(lv_obj_t *canvas, const struct status_state *state) {
     lv_area_t coords_img = {
         .x1 = OFFSET_X,
         .y1 = OFFSET_Y,
-        .x2 = OFFSET_X + layer.header.w - 1,
-        .y2 = OFFSET_Y + layer.header.h - 1,
+        .x2 = OFFSET_X + layer_icon.header.w - 1,
+        .y2 = OFFSET_Y + layer_icon.header.h - 1,
     };
 
     img_dsc.src = &layer_icon;
