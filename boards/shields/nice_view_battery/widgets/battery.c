@@ -82,7 +82,7 @@ void draw_battery_status(lv_obj_t *canvas, const struct status_state *state) {
                     .y2 = y + dy + outline_dsc.font->line_height - 1,
                 };
 
-                lv_draw_label(&layer_outline, &outline_dsc, &coords_outline, text, NULL);
+                lv_draw_label(&layer_outline, &outline_dsc, &coords_outline, text);
 
                 canvas_end(canvas, &layer_outline);
             }
@@ -99,7 +99,7 @@ void draw_battery_status(lv_obj_t *canvas, const struct status_state *state) {
         .y2 = y + label_dsc.font->line_height - 1,
     };
 
-    lv_draw_label(&layer_text, &label_dsc, &coords_text, text, NULL);
+    lv_draw_label(&layer_text, &label_dsc, &coords_text, text);
 
     canvas_end(canvas, &layer_text);
 
