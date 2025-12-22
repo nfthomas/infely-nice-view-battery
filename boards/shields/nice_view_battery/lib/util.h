@@ -32,11 +32,3 @@ void init_line_dsc(lv_draw_line_dsc_t *line_dsc, lv_color_t color, uint8_t width
 void init_label_dsc(lv_draw_label_dsc_t *label_dsc, lv_color_t color, const lv_font_t *font,
                     lv_text_align_t align);
 void to_uppercase(char *str);
-
-static inline void canvas_begin(lv_obj_t *canvas, lv_layer_t *layer) {
-    lv_canvas_init_layer(canvas, layer);
-}
-
-static inline void canvas_end(lv_obj_t *canvas, lv_layer_t *layer) {
-    lv_canvas_finish_layer(canvas, layer);
-}

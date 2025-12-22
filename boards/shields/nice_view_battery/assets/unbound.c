@@ -28,8 +28,10 @@ const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_UNBOUND u
   0xff, 0xc0,
 };
 
-const lv_image_dsc_t unbound = {
-  .header.cf = LV_COLOR_FORMAT_I1,
+const lv_img_dsc_t unbound = {
+  .header.cf = LV_IMG_CF_INDEXED_1BIT,
+  .header.always_zero = 0,
+  .header.reserved = 0,
   .header.w = 22,
   .header.h = 22,
   .data_size = 74,

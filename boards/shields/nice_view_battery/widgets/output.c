@@ -17,98 +17,44 @@
 
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 static void draw_usb_connected(lv_obj_t *canvas) {
-    lv_draw_image_dsc_t img_dsc;
-    lv_draw_image_dsc_init(&img_dsc);
+    lv_draw_img_dsc_t img_dsc;
+    lv_draw_img_dsc_init(&img_dsc);
 
-    lv_layer_t layer;
-    canvas_begin(canvas, &layer);
-
-    lv_area_t coords = {
-        .x1 = OFFSET_X,
-        .y1 = OFFSET_Y,
-        .x2 = OFFSET_X + usb.header.w - 1,
-        .y2 = OFFSET_Y + usb.header.h - 1,
-    };
-
-    img_dsc.src = &usb;
-    lv_draw_image(&layer, &img_dsc, &coords);
-
-    canvas_end(canvas, &layer);
+    lv_canvas_draw_img(canvas, OFFSET_X, OFFSET_Y, &usb, &img_dsc);
 }
 
 static void draw_ble_unbonded(lv_obj_t *canvas) {
-    lv_draw_image_dsc_t img_dsc;
-    lv_draw_image_dsc_init(&img_dsc);
+    lv_draw_img_dsc_t img_dsc;
+    lv_draw_img_dsc_init(&img_dsc);
 
-    lv_layer_t layer;
-    canvas_begin(canvas, &layer);
-
-    lv_area_t coords = {
-        .x1 = OFFSET_X,
-        .y1 = OFFSET_Y,
-        .x2 = OFFSET_X + unbound.header.w - 1,
-        .y2 = OFFSET_Y + unbound.header.h - 1,
-    };
-
-    img_dsc.src = &unbound;
-    lv_draw_image(&layer, &img_dsc, &coords);
-
-    canvas_end(canvas, &layer);
+    lv_canvas_draw_img(canvas, OFFSET_X, OFFSET_Y, &unbound, &img_dsc);
 }
 #endif
 
 static void draw_ble_disconnected(lv_obj_t *canvas) {
-    lv_draw_image_dsc_t img_dsc;
-    lv_draw_image_dsc_init(&img_dsc);
+    lv_draw_img_dsc_t img_dsc;
+    lv_draw_img_dsc_init(&img_dsc);
 
-    const lv_img_dsc_t *img_ptr =
+    lv_canvas_draw_img(canvas, OFFSET_X, OFFSET_Y,
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-                       &bt_disconnected;
+                       &bt_disconnected,
 #else
-                       &link_disconnected;
+                       &link_disconnected,
 #endif
-
-    lv_layer_t layer;
-    canvas_begin(canvas, &layer);
-
-    lv_area_t coords = {
-        .x1 = OFFSET_X,
-        .y1 = OFFSET_Y,
-        .x2 = OFFSET_X + img_ptr->header.w - 1,
-        .y2 = OFFSET_Y + img_ptr->header.h - 1,
-    };
-
-    img_dsc.src = (const void *)img_ptr;
-    lv_draw_image(&layer, &img_dsc, &coords);
-
-    canvas_end(canvas, &layer);
+                       &img_dsc);
 }
 
 static void draw_ble_connected(lv_obj_t *canvas) {
-    lv_draw_image_dsc_t img_dsc;
-    lv_draw_image_dsc_init(&img_dsc);
+    lv_draw_img_dsc_t img_dsc;
+    lv_draw_img_dsc_init(&img_dsc);
 
-    const lv_img_dsc_t *img_ptr =
+    lv_canvas_draw_img(canvas, OFFSET_X, OFFSET_Y,
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-                       &bt;
+                       &bt,
 #else
-                       &link;
+                       &link,
 #endif
-
-    lv_layer_t layer;
-    canvas_begin(canvas, &layer);
-
-    lv_area_t coords = {
-        .x1 = OFFSET_X,
-        .y1 = OFFSET_Y,
-        .x2 = OFFSET_X + img_ptr->header.w - 1,
-        .y2 = OFFSET_Y + img_ptr->header.h - 1,
-    };
-
-    img_dsc.src = (const void *)img_ptr;
-    lv_draw_image(&layer, &img_dsc, &coords);
-
-    canvas_end(canvas, &layer);
+                       &img_dsc);
 }
 
 void draw_output_status(lv_obj_t *canvas, const struct status_state *state) {
