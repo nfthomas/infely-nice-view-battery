@@ -6,69 +6,53 @@
 #define OFFSET_Y 0
 
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-    LV_IMG_DECLARE(bt);
-    LV_IMG_DECLARE(bt_disconnected);
-    LV_IMG_DECLARE(unbound);
-    LV_IMG_DECLARE(usb);
+    LV_IMG_DECLARE(full_width_bt);
+    LV_IMG_DECLARE(full_width_bt_disconnected);
+    LV_IMG_DECLARE(full_width_unbound);
+    LV_IMG_DECLARE(full_width_usb);
 #else
-    LV_IMG_DECLARE(link);
-    LV_IMG_DECLARE(link_disconnected);
+    LV_IMG_DECLARE(full_width_link);
+    LV_IMG_DECLARE(full_width_link_disconnected);
 #endif
 
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 static void draw_usb_connected(lv_obj_t *canvas) {
-    lv_draw_rect_dsc_t rect_dsc;
-    init_rect_dsc(&rect_dsc, LVGL_FOREGROUND);
-    lv_canvas_draw_rect(canvas, OFFSET_X, OFFSET_Y, 68, 22, &rect_dsc);
-
     lv_draw_img_dsc_t img_dsc;
     lv_draw_img_dsc_init(&img_dsc);
 
-    lv_canvas_draw_img(canvas, OFFSET_X + 23, OFFSET_Y, &usb, &img_dsc);
+    lv_canvas_draw_img(canvas, OFFSET_X, OFFSET_Y, &full_width_usb, &img_dsc);
 }
 
 static void draw_ble_unbonded(lv_obj_t *canvas) {
-    lv_draw_rect_dsc_t rect_dsc;
-    init_rect_dsc(&rect_dsc, LVGL_BACKGROUND);
-    lv_canvas_draw_rect(canvas, OFFSET_X, OFFSET_Y, 68, 22, &rect_dsc);
-
     lv_draw_img_dsc_t img_dsc;
     lv_draw_img_dsc_init(&img_dsc);
 
-    lv_canvas_draw_img(canvas, OFFSET_X + 23, OFFSET_Y, &unbound, &img_dsc);
+    lv_canvas_draw_img(canvas, OFFSET_X, OFFSET_Y, &full_width_unbound, &img_dsc);
 }
 #endif
 
 static void draw_ble_disconnected(lv_obj_t *canvas) {
-    lv_draw_rect_dsc_t rect_dsc;
-    init_rect_dsc(&rect_dsc, LVGL_BACKGROUND);
-    lv_canvas_draw_rect(canvas, OFFSET_X, OFFSET_Y, 68, 22, &rect_dsc);
-
     lv_draw_img_dsc_t img_dsc;
     lv_draw_img_dsc_init(&img_dsc);
 
-    lv_canvas_draw_img(canvas, OFFSET_X + 23, OFFSET_Y,
+    lv_canvas_draw_img(canvas, OFFSET_X, OFFSET_Y,
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-                        &bt_disconnected,
+                        &full_width_bt_disconnected,
 #else
-                        &link_disconnected,
+                        &full_width_link_disconnected,
 #endif
                         &img_dsc);
 }
 
 static void draw_ble_connected(lv_obj_t *canvas) {
-    lv_draw_rect_dsc_t rect_dsc;
-    init_rect_dsc(&rect_dsc, LVGL_FOREGROUND);
-    lv_canvas_draw_rect(canvas, OFFSET_X, OFFSET_Y, 68, 22, &rect_dsc);
-
     lv_draw_img_dsc_t img_dsc;
     lv_draw_img_dsc_init(&img_dsc);
 
-    lv_canvas_draw_img(canvas, OFFSET_X + 23, OFFSET_Y,
+    lv_canvas_draw_img(canvas, OFFSET_X, OFFSET_Y,
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-                        &bt,
+                        &full_width_bt,
 #else
-                        &link,
+                        &full_width_link,
 #endif
                         &img_dsc);
 }
