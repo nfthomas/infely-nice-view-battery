@@ -1,3 +1,50 @@
+# On this fork
+
+In the same way the original display "highlights changes only" when changing layers, I've inverted the highlighted bluetooth/peripheral board link icons. I've also made them full-width and shorter. Basically, I want to recognize if something's disconnected at a glance.
+
+## Visual comparison
+
+| Normal (22x22) | Full Width Inverted (68x18) |
+| --- | --- |
+| ![bt](images/bt.png) | ![bt](images/bt_full_width_inverted.png) |
+| ![bt disconnected](images/bt_disconnected.png) | ![bt disconnected](images/bt_disconnected_full_width_inverted.png) |
+| ![link](images/link.png) | ![link](images/link_full_width_inverted.png) |
+| ![link disconnected](images/link_disconnected.png) | ![link disconnected](images/link_disconnected_full_width_inverted.png) |
+| ![usb](images/usb.png) | ![usb](images/usb_full_width_inverted.png) |
+| ![unbound](images/unbound.png) | ![unbound](images/unbound_full_width_inverted.png) |
+
+## Modifying assets
+
+To go image -> C array: [LVGL image converter](https://lvgl.io/tools/imageconverter)
+
+To go C array -> image: [image2cpp](https://javl.github.io/image2cpp/)
+
+To upload images and modify image pixels: [piskel](https://www.piskelapp.com/p/create/sprite/)
+
+# Pinning original repo on ZMK v0.2
+
+```yaml
+# config/west.yml
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    # ...
+    - name: infely
+      url-base: https://github.com/infely
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: v0.2
+      import: app/west.yml
+    # ...
+    - name: nice-view-battery
+      remote: infely
+      revision: a9ebccd
+  self:
+    path: config
+```
+
 # nice-view-battery
 
 ![Preview](https://github.com/infely/nice-view-battery/blob/main/.github/assets/preview.jpg?raw=true)
